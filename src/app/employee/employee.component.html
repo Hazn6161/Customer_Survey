@@ -1,0 +1,866 @@
+<!doctype html>
+<html lang="en">
+<header>
+  <meta name="viewpoint" content="width=device-width">
+  <title>DataTable</title>
+  <meta charset="utf-8">
+  <!-- <meta name="viewport" content="width=device-width,initial-scale = 1"> -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"> </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"> </script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"> </script>
+
+  <script src="https://code.jquery.com/jquery-3.7.1.js"> </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"> </script>
+  <script src="https://cdn.datatables.net/2.1.8/js/dataTables.js"> </script>
+  <script src="https://cdn.datatables.net/2.1.8/js/dataTables.bootstrap5.js"> </script>
+
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
+  <link href="https://cdn.datatables.net/2.1.8/css/dataTables.bootstrap5.css">
+</header>
+
+<body class="body">
+  <nav class="navbar mb-4">
+    <div class="container-fluid">
+      <div class="pull-right mb-2">
+        <h6 style="color: white; margin-bottom: 0px; font-size: small;">Code - {{Percode}}</h6>
+      </div>
+      <div class="pull-right mb-2">
+        <h6 style="color: white; margin-bottom: 0px; font-size: small;">Name - {{username}}</h6>
+      </div>
+      <div class="pull-right mb-2">
+        <h6 style="color: white; margin-bottom: 0px; font-size: small;">Location - {{branchId}}</h6>
+      </div>
+      <!-- <div class="pull-right" ><h6 style="color: white; margin-bottom: 0px;">{{epf}}</h6></div> -->
+    </div>
+    <!-- <h6 class="pull-right" style="color: white;">{{userName}}</h6> -->
+    <div class="container-fluid">
+      <h2 style="color: aliceblue;">
+        <img class="imgs" src="https://i.ibb.co/NSpgrS1/life.png" style="vertical-align: middle;">
+        <span class="mx-3" style="vertical-align: middle; font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; font-size: 35px;">EZY Advisor</span>
+        <!-- <span class="mx-2 text-black" style="vertical-align: middle; font-size:small; font-style: italic;">Enthusiasm Zest Yield</span> -->
+      </h2>
+      <!-- <h2 style="color: aliceblue"><img class="imgs" src="https://i.ibb.co/RCJJjJs/Life-Chrismes.png">&nbsp;Prospective Client's Record</h2> -->
+      <div class="">
+        <!-- <button routerLink="/change-password" class="btn btn-warning me-2 mb-2"><i
+            class="bi bi-person-lock me-2"></i>Change Password</button> -->
+        <button type="button" data-bs-toggle="modal" data-bs-target="#changepassword" class="btn btn-warning me-2 mb-2"
+          (click)="addClick()"><i class="bi-person-lock me-2"></i>Change Password</button>
+        <button type="button" data-bs-toggle="modal" data-bs-target="#contactusModal"
+          class="btn btn-secondary me-2 mb-2" (click)="addClick()"><i class="bi bi-telephone me-2"></i>Contact
+          Us</button>
+        <button routerLink="/login" class="btn btn-danger mb-2"><i class="bi bi-box-arrow-left me-2"></i>
+          Logout</button>
+      </div>
+    </div>
+  </nav>
+
+  <div class="mb-4 m">
+    <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-primary me-2 mb-2"
+      (click)="addClick()"><i class="bi bi-file-plus me-2"></i>Add a Record</button>
+    <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal3" class="btn btn-success me-2 mb-2"
+      (click)="addClick()"><i class="bi bi-journals me-2"></i>New Business </button>
+    <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal2" class="btn btn-info me-2 mb-2"
+      (click)="addClick()"><i class="bi-coin me-2"></i>Make a Payment</button>
+    <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal4" class="btn btn-dk me-2 mb-2"
+      (click)="addClick()"><i class="bi-collection me-2"></i>My Collections</button>
+  </div>
+
+  <div class="mt-2">
+    <div class="table-responsive">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th class="align-items-md-center" scope="col">Name</th>
+            <th class="align-items-md-center" scope="col">NIC</th>
+            <!-- <th scope="col">Type of Insurance</th> -->
+            <!-- <th scope="col">Family Details</th>
+        <th scope="col">Present Insurer</th> -->
+            <!-- <th scope="col">Monthly Income</th> -->
+            <!-- <th scope="col">Monthly Expences</th> -->
+            <th class="align-items-md-center" scope="col">Created Data</th>
+            <!-- <th scope="col">Modified Data</th> -->
+            <!-- <th scope="col">Sum Insured</th> -->
+            <!-- <th scope="col">Remark</th> -->
+            <th class="align-items-md-center" scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let emp of employeeData">
+            <td class="align-items-md-center" data-label="Name">{{emp.name}}</td>
+            <td class="align-items-md-center" data-label="NIC">{{emp.nic}}</td>
+            <!-- <td data-label="Address">{{emp.address}}</td> -->
+            <!-- <td data-label="Mobile No">{{emp.mobile}}</td>
+            <td data-label="Status">{{emp.statusType}}</td> -->
+            <!-- <td data-label="Type of Insurance">{{emp.typeOfInsurance}}</td> -->
+            <!-- <td data-label="familyDetails">{{emp.familyDetails}}</td>
+            <td data-label="Present Insurer">{{emp.presentInsurer}}</td> -->
+            <!-- <td data-label="Monthly Income">{{emp.monthlyIncome}}</td>
+            <td data-label="Monthly Expences">{{emp.monthlyExpences}}</td> -->
+            <td class="align-items-md-center" data-label="Created Data">{{emp.createdDateTime}}</td>
+            <!-- <td data-label="Modified Data">{{emp.modifiedDateTime}}</td> -->
+            <!-- <td data-label="Sum Insured">{{emp.sumInsured}}</td> -->
+            <!-- <td data-label="Remark">{{emp.remark}}</td> -->
+
+            <!-- <td data-label="Staus">Passed</td> -->
+            <td class="align-items-md-center" class="text-center">
+              <button (click)="onEdit(emp)" type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal"
+                data-bs-target="#exampleModal">Update</button>
+              <!-- <button (click)="deleteEmployeeDetail(emp)" type="button"  class="btn btn-primary btn-sm" >Complete</button> -->
+              <!-- <button class="btn btn-danger btn-sm mx-2">Delete</button>  -->
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Modal Add Record-->
+  <div class="modal fade bd-example-modal-lg" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title fw-bolder" id="exampleModalLabel"><i class="bi bi-file-plus me-2"></i>Add a record</h4>
+          <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
+          <button type="button" id="cancel" class="btn btn-danger btn-sm" data-bs-dismiss="modal">
+            X
+          </button>
+        </div>
+        <div class="modal-body">
+          <form [formGroup]="formValue">
+            <div class="mb-3">
+              <label for="exampleInputEmail1" class="form-label">Name</label>
+              <input type="text" [readOnly] class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                formControlName="name">
+            </div>
+            <div class="mb-3">
+              <label class="form-label">NIC</label>
+              <input type="text" class="form-control" formControlName="nic">
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Address</label>
+              <textarea class="form-control" formControlName="address"></textarea>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Mobile No</label>
+              <input type="text" class="form-control" formControlName="mobile">
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Status</label>
+              <select type="text" class="form-control" formControlName="statusType">
+                <option>Married</option>
+                <option>Single</option>
+              </select>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Spouse Age</label>
+              <input type="text" class="form-control" formControlName="spouseAge">
+            </div>
+            <div class="mb-3">
+              <label class="form-label">No of Family Members</label>
+              <input type="text" class="form-control" formControlName="noOfFamilyMembers">
+            </div>
+            <div class="mb-3">
+              <label class="form-label">No of Child</label>
+              <input type="text" class="form-control" formControlName="noOfChild">
+            </div>
+            <!-- <div class="mb-3">
+              <input type="text" class="form-control" id="exampleInputPassword1" formControlName="familyDetails">
+            </div>
+            <div class="mb-3">
+              <input type="text" class="form-control" id="exampleInputPassword1" formControlName="familyDetails">
+            </div>
+            <div class="mb-3">
+              <input type="text" class="form-control" id="exampleInputPassword1" formControlName="familyDetails">
+            </div> -->
+            <div class="mb-3">
+              <label class="form-label">Type of Insurance</label>
+              <select type="text" class="form-control" formControlName="typeOfInsurance">
+                <option>Monthly</option>
+                <option>Quarterly</option>
+                <option>Half Yearly</option>
+                <option>Yearly</option>
+              </select>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Present Insurer</label>
+              <input type="text" class="form-control" formControlName="presentInsurer">
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Monthly Income</label>
+              <input type="text" class="form-control" formControlName="monthlyIncome" />
+            </div>
+            <div class="mb-3">
+              <label class="form-label"></label>
+              <label class="form-label">Monthly Expences</label>
+              <input type="text" class="form-control" formControlName="monthlyExpences" />
+            </div>
+            <!-- <div class="mb-3">
+              <label for="exampleInputPassword1" class="form-label"></label>
+                <label for="exampleInputPassword1" class="form-label">Premium</label>
+                <input type="text" class="form-control" id="exampleInputPassword1" formControlName="premium" />
+            </div>
+            <div class="mb-3">
+              <label for="exampleInputPassword1" class="form-label"></label>
+                <label for="exampleInputPassword1" class="form-label">Sum Insured</label>
+                <input type="text" class="form-control" id="exampleInputPassword1" formControlName="sumInsured" />
+            </div> -->
+            <div class="mb-3">
+              <label class="form-label"></label>
+              <label class="form-label">Remark</label>
+              <input type="text" class="form-control" formControlName="remark" />
+            </div>
+            <!-- <div class="mb-3">
+              <label for="exampleInputPassword1" class="form-label">Test</label>
+              <select class="form-control" id="cars" name="cars">
+                <option value="volvo">Select</option>
+                <option value="volvo">Admission</option>
+                <option value="saab">Diagnosis Card</option>
+                <option value="fiat">Prescription</option>
+                <option value="audi">Final Bill</option>
+                <option value="audi">Other</option>
+              </select>
+            </div> -->
+            <!-- <div class="mb-3">
+              <label for="exampleInputPassword1" class="form-label">Upload</label>
+              <input type="file" accept="image/*" class="form-control">
+            </div> -->
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" id="cancel" class="btn btn-secondary" data-bs-dismiss="modal">
+            Close
+          </button>
+          <button *ngIf="!isEdit" type="button" (click)="addEmployee()" class="btn btn-primary">
+            Save
+          </button>
+          <button *ngIf="isEdit" type="button" (click)="updateEmployee()" class="btn btn-primary">
+            Update
+          </button>
+        </div>
+        <p class="text-center text-black mt-2 me-2" style="text-align: center; font-size:10px;">© 2024 Copyright <a href="https://cooplife.lk/">COOPINSU </a>All Rights Reserved. made by Coop Software Development Unit</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Payment-->
+  <div class="modal fade bd-example-modal-lg" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title fw-bolder"><i class="bi-coin me-3"></i>Payment Details</h4>
+          <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
+          <button type="button" id="cancel" class="btn btn-danger btn-sm" data-bs-dismiss="modal">
+            X
+          </button>
+        </div>
+        <div class="modal-body">
+          <form [formGroup]="paymentForm">
+            <div class="mb-3">
+              <label class="form-label">Receipt Category</label>
+              <select type="text" class="form-control" formControlName="receiptsCat">
+                <option value="" selected disabled>Please select</option>
+                <option>Renewal Receipts</option>
+                <option>Deposit Receipts</option>
+                <option>Policy loan Settlement Receipts</option>
+                <option>Policy fee</option>
+                <option>Alteration fee</option>
+                <option>Special revival fee</option>
+                <option>Duplicate policy fee</option>
+                <option>Loan fee</option>
+              </select>
+            </div>
+            <label class="form-label">Policy Number</label>
+            <div class="input-group mb-3">
+              <input type="number" class="form-control" formControlName="policyNo">
+              <div class="input-group-append">
+                <button class="btn btn-primary" type="button" (click)="getByPolicyNo()"
+                  [disabled]="!paymentForm.get('policyNo')?.valid">
+                  Search
+                </button>
+              </div>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Policy Holder</label>
+              <input type="text" class="form-control" formControlName="policyHolder" readonly>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Address</label>
+              <textarea class="form-control" formControlName="payAddress" readonly></textarea>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">NIC</label>
+              <input type="text" class="form-control" formControlName="cusNic" readonly>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Policy Category</label>
+              <input type="text" class="form-control" formControlName="policyType" readonly>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Policy Status</label>
+              <input type="text" class="form-control" formControlName="policyStatus" readonly>
+            </div>
+
+            <div class="table-responsive" style="float: left; width:100%;">
+              <h4 class="text-center">Payment Summary</h4>
+              <table class="table table-striped" id="RecipeIngredientTable2">
+                <thead>
+                  <tr>
+                    <th scope="col">Policy Type</th>
+                    <th scope="col">Payment</th>
+                    <th scope="col">Due Date</th>
+                    <th scope="col">Paid Date</th>
+                    <th scope="col">Status</th>
+                  </tr>
+                </thead>
+                <tbody class="tbody-scroll">
+
+                  <tr *ngFor="let policyPayment of policyPayments">
+                    <td class="text-center">{{ policyPayment.type }}</td>
+                    <td class="text-center">{{ policyPayment.payment }}</td>
+                    <td class="text-center">{{ policyPayment.dueDate | date: 'yyyy-MMM-dd' }}</td>
+                    <td class="text-center">{{ policyPayment.paidDate | date: 'yyyy-MMM-dd'}}</td>
+                    <td class="text-center">{{ policyPayment.status }}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Mobile No</label>
+              <input type="text" class="form-control" formControlName="mobileNo" readonly>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">New Mobile No</label>
+              <!-- <input type="number" class="form-control" formControlName="mobileNo2"> -->
+              <input type="tel" class="form-control" formControlName="mobileNo2" maxlength="10">
+            </div>
+            <div class="mt-4 mx-1 mb-4">
+              <h4 class="text-center mb-4 mt-4">Payment Type</h4>
+              <div class="row">
+                <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                  <input type="radio" class="btn-check" value="Cash" (change)="onRadioButtonChange_pay($event)"
+                    formControlName="paymentType1" name="paymentType1" id="btnradio" autocomplete="off" checked>
+                  <label class="btn btn-outline-primary" for="btnradio">Cash</label>
+
+                  <input type="radio" class="btn-check" value="cheque" (change)="onRadioButtonChange_pay($event)"
+                    formControlName="paymentType1" name="paymentType1" id="btnradio3" autocomplete="off">
+                  <label class="btn btn-outline-primary" for="btnradio3">Cheque</label>
+                </div>
+              </div>
+            </div>
+            <div class="mb-3">
+              <label class="col-form-label">Bank</label>
+              <select class="form-select" name="bank1" formControlName="bank1">
+                <option value="" selected disabled>Please select</option>
+                <option *ngFor="let bank of bankdetails">
+                  {{bank.branchCodetotal}}
+                </option>
+              </select>
+            </div>
+            <div class="row">
+              <div class="col mb-3">
+                <label class="col-form-label">Cheque No</label>
+                <input type="tel" class="form-control" formControlName="chequeNo1">
+              </div>
+              <div class="col mb-3">
+                <label class="col-form-label">Cheque Date</label>
+                <input type="date" class="form-control" formControlName="chequedate1">
+              </div>
+            </div>
+          <div class="row">
+            <div class="col mb-3">
+              <label class="form-label">Paid Amount</label>
+              <input type="tel" class="form-control" formControlName="paidAmount">
+            </div>
+            <div class="col mb-3">
+              <label class="form-label">Confirm Paid Amount</label>
+              <input type="tel" class="form-control" id="confirmpaidAmount" formControlName="confirmpaidAmount">
+            </div>
+          </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" (click)="clearForms()" class="btn btn-danger">
+            Clear
+          </button>
+          <button type="button" id="cancel" class="btn btn-secondary" data-bs-dismiss="modal">
+            Close
+          </button>
+          <button *ngIf="!isEdit" type="button" (click)="addPolicyPayment()" [disabled]="paymentForm.invalid"
+            class="btn btn-success">
+            Save
+          </button>
+        </div>
+        <p class="text-center text-black mt-2 me-2" style="text-align: center; font-size:10px;">© 2024 Copyright <a href="https://cooplife.lk/">COOPINSU </a>All Rights Reserved. made by Coop Software Development Unit</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Contact us -->
+  <div class="modal fade bd-example-modal-lg" id="contactusModal" tabindex="-1" aria-labelledby="contactusModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog  modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title fw-bolder" id="contactusModallLabel"><i class="bi-telephone me-3"></i>Contact Us</h4>
+          <button type="button" id="cancel" class="btn btn-danger btn-sm" data-bs-dismiss="modal">
+            X
+          </button>
+        </div>
+
+        <section class="bg-light py-3 py-md-5">
+          <div class="container">
+            <div class="row gy-3 gy-md-4 gy-lg-0 align-items-md-center">
+              <div class="">
+                <div class="">
+                  <div class="">
+                    <div>
+                      <h2 style="color: aliceblue"><img class="center mb-5 mt-5"
+                          src="https://i.ibb.co/NSpgrS1/life.png"></h2>
+                    </div>
+                    <div class="d-flex mb-5">
+                      <div class="me-4 text-primary">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor"
+                          class="bi bi-geo" viewBox="0 0 16 16">
+                          <path fill-rule="evenodd"
+                            d="M8 1a3 3 0 1 0 0 6 3 3 0 0 0 0-6zM4 4a4 4 0 1 1 4.5 3.969V13.5a.5.5 0 0 1-1 0V7.97A4 4 0 0 1 4 3.999zm2.493 8.574a.5.5 0 0 1-.411.575c-.712.118-1.28.295-1.655.493a1.319 1.319 0 0 0-.37.265.301.301 0 0 0-.057.09V14l.002.008a.147.147 0 0 0 .016.033.617.617 0 0 0 .145.15c.165.13.435.27.813.395.751.25 1.82.414 3.024.414s2.273-.163 3.024-.414c.378-.126.648-.265.813-.395a.619.619 0 0 0 .146-.15.148.148 0 0 0 .015-.033L12 14v-.004a.301.301 0 0 0-.057-.09 1.318 1.318 0 0 0-.37-.264c-.376-.198-.943-.375-1.655-.493a.5.5 0 1 1 .164-.986c.77.127 1.452.328 1.957.594C12.5 13 13 13.4 13 14c0 .426-.26.752-.544.977-.29.228-.68.413-1.116.558-.878.293-2.059.465-3.34.465-1.281 0-2.462-.172-3.34-.465-.436-.145-.826-.33-1.116-.558C3.26 14.752 3 14.426 3 14c0-.599.5-1 .961-1.243.505-.266 1.187-.467 1.957-.594a.5.5 0 0 1 .575.411z" />
+                        </svg>
+                      </div>
+                      <div>
+                        <h4 class="mb-3">Address</h4>
+                        <address class="mb-0 text-secondary">Cooplife Insurance Limited Coop House, 455, Galle Road,
+                          Colombo 03, Sri Lanka</address>
+                      </div>
+                    </div>
+                    <div class="row mb-5">
+                      <div class="col-12 col-sm-6">
+                        <div class="d-flex mb-5 mb-sm-0">
+                          <div class="me-4 text-primary">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor"
+                              class="bi bi-telephone-outbound" viewBox="0 0 16 16">
+                              <path
+                                d="M3.654 1.328a.678.678 0 0 0-1.015-.063L1.605 2.3c-.483.484-.661 1.169-.45 1.77a17.568 17.568 0 0 0 4.168 6.608 17.569 17.569 0 0 0 6.608 4.168c.601.211 1.286.033 1.77-.45l1.034-1.034a.678.678 0 0 0-.063-1.015l-2.307-1.794a.678.678 0 0 0-.58-.122l-2.19.547a1.745 1.745 0 0 1-1.657-.459L5.482 8.062a1.745 1.745 0 0 1-.46-1.657l.548-2.19a.678.678 0 0 0-.122-.58L3.654 1.328zM1.884.511a1.745 1.745 0 0 1 2.612.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.678.678 0 0 0 .178.643l2.457 2.457a.678.678 0 0 0 .644.178l2.189-.547a1.745 1.745 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.634 18.634 0 0 1-7.01-4.42 18.634 18.634 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877L1.885.511zM11 .5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-1 0V1.707l-4.146 4.147a.5.5 0 0 1-.708-.708L14.293 1H11.5a.5.5 0 0 1-.5-.5z" />
+                            </svg>
+                          </div>
+                          <div>
+                            <h4 class="mb-3">Phone</h4>
+                            <p class="mb-0">
+                              <a class="link-secondary text-decoration-none" href="tel:+94710233087">Dinith - (+94 71
+                                0233087)</a>
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="col-12 col-sm-6">
+                        <div class="d-flex mb-0">
+                          <div class="me-4 text-primary">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor"
+                              class="bi bi-envelope-at" viewBox="0 0 16 16">
+                              <path
+                                d="M2 2a2 2 0 0 0-2 2v8.01A2 2 0 0 0 2 14h5.5a.5.5 0 0 0 0-1H2a1 1 0 0 1-.966-.741l5.64-3.471L8 9.583l7-4.2V8.5a.5.5 0 0 0 1 0V4a2 2 0 0 0-2-2H2Zm3.708 6.208L1 11.105V5.383l4.708 2.825ZM1 4.217V4a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v.217l-7 4.2-7-4.2Z" />
+                              <path
+                                d="M14.247 14.269c1.01 0 1.587-.857 1.587-2.025v-.21C15.834 10.43 14.64 9 12.52 9h-.035C10.42 9 9 10.36 9 12.432v.214C9 14.82 10.438 16 12.358 16h.044c.594 0 1.018-.074 1.237-.175v-.73c-.245.11-.673.18-1.18.18h-.044c-1.334 0-2.571-.788-2.571-2.655v-.157c0-1.657 1.058-2.724 2.64-2.724h.04c1.535 0 2.484 1.05 2.484 2.326v.118c0 .975-.324 1.39-.639 1.39-.232 0-.41-.148-.41-.42v-2.19h-.906v.569h-.03c-.084-.298-.368-.63-.954-.63-.778 0-1.259.555-1.259 1.4v.528c0 .892.49 1.434 1.26 1.434.471 0 .896-.227 1.014-.643h.043c.118.42.617.648 1.12.648Zm-2.453-1.588v-.227c0-.546.227-.791.573-.791.297 0 .572.192.572.708v.367c0 .573-.253.744-.564.744-.354 0-.581-.215-.581-.8Z" />
+                            </svg>
+                          </div>
+                          <div>
+                            <h4 class="mb-3">E-Mail</h4>
+                            <p class="mb-0">
+                              <a class="link-secondary text-decoration-none"
+                                href="mailto:sdu&#64;coopinsu.com">sdu&#64;coopinsu.com</a>
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- <div class="d-flex">
+                      <div class="me-4 text-primary">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-alarm" viewBox="0 0 16 16">
+                          <path d="M8.5 5.5a.5.5 0 0 0-1 0v3.362l-1.429 2.38a.5.5 0 1 0 .858.515l1.5-2.5A.5.5 0 0 0 8.5 9V5.5z" />
+                          <path d="M6.5 0a.5.5 0 0 0 0 1H7v1.07a7.001 7.001 0 0 0-3.273 12.474l-.602.602a.5.5 0 0 0 .707.708l.746-.746A6.97 6.97 0 0 0 8 16a6.97 6.97 0 0 0 3.422-.892l.746.746a.5.5 0 0 0 .707-.708l-.601-.602A7.001 7.001 0 0 0 9 2.07V1h.5a.5.5 0 0 0 0-1h-3zm1.038 3.018a6.093 6.093 0 0 1 .924 0 6 6 0 1 1-.924 0zM0 3.5c0 .753.333 1.429.86 1.887A8.035 8.035 0 0 1 4.387 1.86 2.5 2.5 0 0 0 0 3.5zM13.5 1c-.753 0-1.429.333-1.887.86a8.035 8.035 0 0 1 3.527 3.527A2.5 2.5 0 0 0 13.5 1z" />
+                        </svg>
+                      </div>
+                      <div>
+                        <h4 class="mb-3">Opening Hours</h4>
+                        <div class="d-flex mb-1">
+                          <p class="text-secondary fw-bold mb-0 me-5">Mon - Fri</p>
+                          <p class="text-secondary mb-0">9am - 5pm</p>
+                        </div>
+                        <div class="d-flex">
+                          <p class="text-secondary fw-bold mb-0 me-5">Sat - Sun</p>
+                          <p class="text-secondary mb-0">9am - 2pm</p>
+                        </div>
+                      </div>
+                    </div> -->
+                  </div>
+                </div>
+              </div>
+              <!-- <div class="col-12 col-lg-6">
+                <div class="bg-white border rounded shadow-sm overflow-hidden">
+                </div>
+              </div> -->
+            </div>
+          </div>
+        </section>
+
+        <div class="modal-footer">
+          <button type="button" id="cancel" class="btn btn-secondary" data-bs-dismiss="modal">
+            Close
+          </button>
+        </div>
+        <p class="text-center text-black me-2" style="text-align: center; font-size:10px;">© 2024 Copyright <a href="https://cooplife.lk/">COOPINSU </a> All Rights Reserved. made by Coop Software Development Unit</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal new business -->
+  <div class="modal fade bd-example-modal-lg" id="exampleModal3" tabindex="-1" aria-labelledby="exampleModalLabe3"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title fw-bolder" id="exampleModalLabe3"><i class="bi bi-journals me-3"></i>New Business</h5>
+          <button type="button" id="cancel" class="btn btn-danger btn-sm" data-bs-dismiss="modal">
+            X
+          </button>
+        </div>
+        <div class="modal-body">
+          <!-- <div class="">
+            <img class="workimag mt-5 mb-5" src="/assets/5695859.png">
+          </div> -->
+          <form [formGroup]="newbisform">
+            <div class="mb-3">
+              <label class="form-label">Plan</label>
+              <select class="form-select" name="newcuspaln" formControlName="newcuspaln">
+                <option value="" selected disabled>Please select</option>
+                <option *ngFor="let plan of plandata">
+                  {{plan.plnDesc}}
+                </option>
+              </select>
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label">Category</label>
+              <select class="form-select" name="newcustitel" formControlName="newcuscategry">
+                <option value="form-select" selected disabled>Please select</option>
+                <option>Policy Fee</option>
+                <option>Initial Premium</option>
+              </select>
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label">Term</label>
+              <select class="form-select" name="newcustitel" formControlName="newcusterm">
+                <option value="" selected disabled>Please select</option>
+                <option>3 Years</option>
+                <option>4 Years</option>
+                <option>5 Years</option>
+                <option>6 Years</option>
+                <option>7 Years</option>
+                <option>8 Years</option>
+                <option>9 Years</option>
+                <option>10 Years</option>
+                <option>11 Years</option>
+                <option>12 Years</option>
+                <option>13 Years</option>
+                <option>14 Years</option>
+                <option>15 Years</option>
+                <option>16 Years</option>
+                <option>17 Years</option>
+                <option>18 Years</option>
+                <option>19 Years</option>
+                <option>20 Years</option>
+                <option>21 Years</option>
+                <option>22 Years</option>
+                <option>23 Years</option>
+                <option>24 Years</option>
+                <option>25 Years</option>
+                <option>26 Years</option>
+                <option>27 Years</option>
+                <option>28 Years</option>
+                <option>29 Years</option>
+                <option>30 Years</option>
+                <option>31 Years</option>
+                <option>32 Years</option>
+                <option>33 Years</option>
+                <option>34 Years</option>
+                <option>35 Years</option>
+                <option>36 Years</option>
+                <option>37 Years</option>
+                <option>38 Years</option>
+                <option>39 Years</option>
+                <option>40 Years</option>
+              </select>
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label">Titel</label>
+              <select class="form-select" name="newcustitel" formControlName="newcustitel">
+                <option value="" selected disabled>Please select</option>
+                <option>Mr</option>
+                <option>Ms</option>
+                <option>Mrs</option>
+                <option>Dr</option>
+                <option>Dr(Mrs)</option>
+                <option>Rev</option>
+                <option>Venerable</option>
+                <option>Major</option>
+                <option>Captain</option>
+                <option>Prof</option>
+                <option>Master</option>
+              </select>
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label">Name</label>
+              <input type="text" class="form-control" formControlName="newcusname">
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label">Address</label>
+              <textarea class="form-control" formControlName="newcusaddres"></textarea>
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label">NIC</label>
+              <input type="text" class="form-control" formControlName="newcusnic" maxlength="12">
+            </div>
+
+            <div class="d-grid mb-3">
+              <label class="form-label">Date of Birth</label>
+              <input type="date" class="form-control" formControlName="newcusdob">
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label">Mobile No</label>
+              <input type="tel" class="form-control" formControlName="newcusmobile" maxlength="10">
+            </div>
+            <div class="mt-4 mx-1 mb-4">
+              <h4 class="text-center mb-4 mt-4">Payment Type</h4>
+              <div class="row">
+                <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                  <input type="radio" class="btn-check" value="Cash" (change)="onRadioButtonChange($event)"
+                    formControlName="paymentType" name="paymentType" id="btnradio1" autocomplete="off" checked>
+                  <label class="btn btn-outline-primary" for="btnradio1">Cash</label>
+
+                  <input type="radio" class="btn-check" value="cheque" (change)="onRadioButtonChange($event)"
+                    formControlName="paymentType" name="paymentType" id="btnradio2" autocomplete="off">
+                  <label class="btn btn-outline-primary" for="btnradio2">Cheque</label>
+                </div>
+              </div>
+            </div>
+            <div class="mb-3">
+              <label class="col-form-label">Bank</label>
+              <select class="form-select" name="bank" formControlName="bank">
+                <option value="" selected disabled>Please select</option>
+                <option *ngFor="let bank of bankdetails">
+                  {{bank.branchCodetotal}}
+                </option>
+              </select>
+            </div>
+            <div class="row">
+              <div class="col mb-3">
+                <label class="col-form-label">Cheque No</label>
+                <input type="tel" class="form-control" formControlName="chequeNo">
+              </div>
+              <div class="col mb-3">
+                <label class="col-form-label">Cheque Date</label>
+                <input type="date" class="form-control" formControlName="chequedate">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col mb-3">
+                <label class="form-label">Paid Amount</label>
+                <input type="tel" class="form-control" formControlName="newbispaidAmount">
+              </div>
+              <div class="col mb-3">
+                <label class="form-label">Confirm Paid Amount</label>
+                <input type="tel" class="form-control" formControlName="newbisconfirmPaidAmount">
+              </div>
+            </div>
+
+          </form>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" (click)="clearnewbisForms()">
+            Clear
+          </button>
+          <button type="button" id="cancel" class="btn btn-secondary" data-bs-dismiss="modal">
+            Close
+          </button>
+          <button *ngIf="!isEdit" type="button" (click)="addNewbusiness()" class="select" class="btn btn-success"
+            [disabled]="newbisform.invalid">
+            Save
+          </button>
+        </div>
+        <p class="text-center text-black mt-2 me-2" style="text-align: center; font-size:10px;">© 2024 Copyright <a href="https://cooplife.lk/">COOPINSU </a>All Rights Reserved. made by Coop Software Development Unit</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- My Collection -->
+  <div class="modal fade bd-example-modal-lg" id="exampleModal4" tabindex="-1" aria-labelledby="exampleModal4"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title fw-bolder" id="exampleModal4"><i class="bi bi-collection me-3"></i>My Collections
+            Summary</h5>
+            <button type="button" id="cancel" class="btn btn-danger btn-sm" data-bs-dismiss="modal">
+              X
+            </button>
+        </div>
+        <div class="modal-body">
+          <!-- <div class="">
+            <img class="workimag mt-5 mb-5" src="/assets/5695859.png">
+          </div> -->
+          <form [formGroup]="collectionform">
+            <div class="d-grid  mb-3">
+              <label class="form-label">From Date</label>
+              <input type="date" class="form-control" formControlName="fromdate">
+            </div>
+            <div class="mb-3">
+              <label class="form-label">To Date</label>
+              <input type="date" class="form-control mb-4" formControlName="todate">
+            </div>
+            <div class="d-grid gap-2 mb-2">
+              <button type="button" (click)="getByDaterange()" [disabled]="collectionform.invalid"
+                class="btn btn-primary mb-3">Search</button>
+            </div>
+            <div class="table-responsive" style="width:100%;">
+              <h4 class="text-center">Collection Summary</h4>
+              <table class="table table-responsive-sm table-striped" id="RecipeIngredientTable2">
+                <thead>
+                  <tr>
+                    <th scope="col">Policy No</th>
+                    <!-- <th scope="col">Receipt No</th> -->
+                    <th scope="col">Customer Name</th>
+                    <th scope="col">Collect Amount</th>
+                    <th scope="col">Collect Date</th>
+                  </tr>
+                </thead>
+                <tbody class="tbody-scroll text-dark" style="text-justify: auto;">
+
+                  <tr *ngFor="let collctionSum of collctionSums">
+                    <td class="text-justify">{{ collctionSum.policyNo }}</td>
+                    <!-- <td class="text-center">{{ collctionSum.receiptNo }}</td> -->
+                    <td class="text-justify">{{ collctionSum.cusName }}</td>
+                    <td class="text-center">{{ collctionSum.payment }}</td>
+                    <td class="text-justify">{{ collctionSum.createdDateTime | date: 'yyyy-MMM-dd hh:mm:ss'}}</td>
+                    <!-- <td class="text-center">{{ collctionSum.paidDate | date: 'yyyy-MMM-dd'}}</td> -->
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <!-- <button *ngIf="!isEdit" type="button" class="btn btn-success">
+            Download
+          </button> -->
+          <button type="button" class="btn btn-danger" (click)="clearcollectionForms()">
+            Clear
+          </button>
+          <button type="button" id="cancel" class="btn btn-secondary" data-bs-dismiss="modal">
+            Close
+          </button>
+        </div>
+        <p class="text-center text-black me-2" style="text-align: center; font-size:10px;">© 2024 Copyright <a href="https://cooplife.lk/">COOPINSU </a>All Rights Reserved. made by Coop Software Development Unit</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- change Password modal -->
+  <div class="modal fade bd-example-modal-lg" id="changepassword" tabindex="-1" aria-labelledby="changepasswordLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content ">
+        <div class="modal-header">
+          <h4 class="modal-title fw-bolder"><i class="bi-person-lock me-3"></i>Change Password</h4>
+          <button type="button" id="cancel" class="btn btn-danger btn-sm" data-bs-dismiss="modal">
+            X
+          </button>
+        </div>
+        <div class="modal-body">
+          <form [formGroup]="paymentForm">
+            <div class="row">
+              <div class="col-sm-12 text-center">
+                <!-- <h1>Change Password</h1> -->
+              </div>
+            </div>
+            <div class="row">
+              <div class="row gy-3 gy-md-4 gy-lg-0 align-items-md-center">
+                <p class="text-center">Use the form below to change your password.</p>
+                <form method="post" id="passwordForm">
+                  <input [type]="show ? 'text' : 'password'" class="input-lg form-control" [(ngModel)]="password1"
+                    name="password1" placeholder="New Password" autocomplete="off">
+                  <div class="row">
+                    <div class="col-sm-6 mb-3"></div>
+                  </div>
+                  <div class="form-label mb-3">
+                    <input type="checkbox" (click)="showPassword()">&nbsp;&nbsp;Show Password
+                  </div>
+                  <div class="d-grid gap-2">
+                    <button class="btn btn-success" (click)="changepassword()">Change
+                      Password</button>
+                  </div>
+                  <p class="text-center text-black mt-5 me-2" style="text-align: center; font-size:10px;">© 2024 Copyright <a href="https://cooplife.lk/">COOPINSU </a>All Rights Reserved. made by Coop Software Development Unit</p>
+                </form>
+              </div><!--/col-sm-6-->
+            </div><!--/row-->
+
+
+
+          </form>
+        </div>
+        <!-- <div class="modal-footer">
+          <button type="button" (click)="clearForms()" class="btn btn-danger">
+            Clear
+          </button>
+          <button type="button" id="cancel" class="btn btn-secondary" data-bs-dismiss="modal">
+            Close
+          </button>
+          <button *ngIf="!isEdit" type="button" (click)="addPolicyPayment()" [disabled]="paymentForm.invalid"
+            class="btn btn-success">
+            Save
+          </button>
+        </div> -->
+      </div>
+    </div>
+  </div>
+  
+  <footer>
+    <p class="text-black mt-2 me-2" style="text-align: center; font-size:10px;">Copyright © 2024 <a href="https://cooplife.lk/">COOPINSU </a>All Rights Reserved. made by Coop Software Development Unit</p>
+  </footer>
+  
+</body>
+
+</html>
+<!-- <ngx-spinner bdColor = "rgba(51, 51, 51, 0.8)" size = "medium" color = "#3E79F0" type = "ball-8bits">
+  <p style = "color: rgb(0, 255, 64)" >
+    Loading Data......
+  </p>
+</ngx-spinner> -->
+
+<div class="spinner mb-2" style="position: relative">
+  <ngx-spinner [name]="spinner1" bdColor="rgba(51, 51, 51, 0.8)" size="large" color="#13EF29" type="ball-scale-multiple"
+    [fullScreen]="true">
+    <p
+      style="text-justify:auto;; color: rgb(21, 248, 13); font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;">
+      Loading Data.....
+    </p>
+  </ngx-spinner>
+</div>
+
+<div class="spinner mb-2" style="position: relative">
+  <ngx-spinner [name]="spinner2" bdColor="rgba(51, 51, 51, 0.8)" size="large" color="#13EF29" type="ball-scale-multiple"
+    [fullScreen]="true">
+    <p
+      style="text-justify:auto;; color: rgb(21, 248, 13); font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;">
+      Payment is processing......
+    </p>
+  </ngx-spinner>
+</div>

@@ -1,0 +1,77 @@
+Warning: This is a simple server for use in testing or debugging Angular applications
+locally. It hasn't been reviewed for security issues.
+
+Binding this server to an open connection can result in compromising your application or
+computer. Using a different host than the one passed to the "--host" flag might result in
+websocket connection issues. You might need to use "--disable-host-check" if that's the
+case.
+- Generating browser application bundles (phase: setup)...
+✔ Browser application bundle generation complete.
+
+Initial Chunk Files   | Names         |  Raw Size
+vendor.js             | vendor        |   3.14 MB |
+polyfills.js          | polyfills     | 318.55 kB |
+styles.css, styles.js | styles        | 210.63 kB |
+main.js               | main          | 107.27 kB |
+runtime.js            | runtime       |   6.51 kB |
+
+| Initial Total |   3.77 MB
+
+Build at: 2024-09-03T06:06:53.461Z - Hash: 9cdd19a0c99b3685 - Time: 3337ms
+
+Warning: /opt/Frontend/life_client_record/src/app/login/login.component.ts depends on 'sweetalert2'. CommonJS or AMD dependencies can cause optimization bailouts.
+For more info see: https://angular.io/guide/build#configuring-commonjs-dependencies
+
+
+
+** Angular Live Development Server is listening on 0.0.0.0:4220, open your browser on http://localhost:4220/ **
+
+
+✔ Compiled successfully.
+✔ Browser application bundle generation complete.
+
+Initial Chunk Files | Names   |  Raw Size
+main.js             | main    | 107.27 kB |
+runtime.js          | runtime |   6.51 kB |
+
+3 unchanged chunks
+
+Build at: 2024-09-03T06:09:20.347Z - Hash: b8bba1b3485fba5a - Time: 564ms
+
+Warning: /opt/Frontend/life_client_record/src/app/employee/employee.component.ts depends on 'sweetalert2'. CommonJS or AMD dependencies can cause optimization bailouts.
+For more info see: https://angular.io/guide/build#configuring-commonjs-dependencies
+
+
+
+✔ Compiled successfully.
+✔ Browser application bundle generation complete.
+
+Initial Chunk Files | Names   | Raw Size
+runtime.js          | runtime |  6.51 kB |
+
+4 unchanged chunks
+
+Build at: 2024-09-03T06:09:21.466Z - Hash: cb26ca507bf8064e - Time: 202ms
+
+✔ Compiled successfully.
+✔ Browser application bundle generation complete.
+
+5 unchanged chunks
+
+Build at: 2024-09-03T06:09:22.706Z - Hash: cb26ca507bf8064e - Time: 152ms
+
+✔ Compiled successfully.
+✔ Browser application bundle generation complete.
+
+5 unchanged chunks
+
+Build at: 2024-09-03T06:09:22.982Z - Hash: cb26ca507bf8064e - Time: 178ms
+
+✔ Compiled successfully.
+✔ Browser application bundle generation complete.
+
+5 unchanged chunks
+
+Build at: 2024-09-03T06:09:23.197Z - Hash: cb26ca507bf8064e - Time: 178ms
+
+✔ Compiled successfully.
