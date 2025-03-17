@@ -5,8 +5,9 @@
 export const environment = {
   production: false,
   //BASE_URL: 'http://172.21.112.188:8006'
-  BASE_URL: 'http://client.cooplife.lk:8006'
+  //BASE_URL: 'http://client.cooplife.lk:8006'
   //BASE_URL: 'http://localhost:8006'
+  BASE_URL: 'http://172.20.11.162:8001'
 };
 
 /*

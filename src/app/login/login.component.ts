@@ -13,6 +13,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 })
 export class LoginComponent implements OnInit {
   public loginform!: UntypedFormGroup;
+feedbackForm: any;
 
   constructor(private formBuilder: UntypedFormBuilder, 
     private http: HttpClient, 
@@ -68,7 +69,7 @@ export class LoginComponent implements OnInit {
         footer: 'Thank You',
         timer: 1500
       })
-      this.router.navigate(['/employee'])
+      this.router.navigate(['/customer'])
       localStorage.setItem('user', JSON.stringify(data));
     },
       error => {

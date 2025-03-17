@@ -74,7 +74,7 @@ export class ApiService {
 
   login(username, password) {
     //return this.http.get<any>(this.apiUrl + "/UserLogin/" + username + "/" + password).pipe(map((res:any)=>{
-      return this.http.get<any>(this.apiUrl + "/PerUser/login/" + username + "/" + password).pipe(map((res:any)=>{
+      return this.http.get<any>(this.apiUrl + "/General/generalLogin/" + username + "/" + password).pipe(map((res:any)=>{
 
       
       return res
@@ -88,5 +88,9 @@ export class ApiService {
   changepassword(updatepassword) {
     return this.http.put(this.apiUrl + "/PerUser", updatepassword);
   }
-   
+
+  
+  savecustomer(customer) {
+    return this.http.post<any>(this.apiUrl + "/CustomerSatiseSurvey", customer);
+  }
 }
