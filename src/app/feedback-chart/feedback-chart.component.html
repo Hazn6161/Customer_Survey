@@ -1,0 +1,21 @@
+<div id="chart">
+  <!-- Display the total result count here -->
+  <div *ngIf="totalResult >= 0" class="total-count d-block rounded">
+    Total Customer Feedback Results : {{ totalResult }}
+  </div>
+  <apx-chart
+    [series]="chartOptions.series!"
+    [chart]="chartOptions.chart!"
+    [dataLabels]="chartOptions.dataLabels!"
+    [plotOptions]="chartOptions.plotOptions!"
+    [yaxis]="chartOptions.yaxis!"
+    [xaxis]="chartOptions.xaxis!"
+    [legend]="chartOptions.legend!"
+    [colors]="chartOptions.colors!"
+    [grid]="chartOptions.grid!"
+  ></apx-chart>
+</div>
+<div>
+  <p class="text-center text-black mt-3" style="text-align: center; font-size:14px;">© 2025 Copyright Co-operative Insurance All
+      Rights Reserved. made by Coop Software Development Unit</p>
+</div>

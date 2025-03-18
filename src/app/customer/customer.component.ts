@@ -51,8 +51,9 @@ export class CustomerComponent {
         imageHeight: 200,
         imageAlt: "Custom image",
         icon: "success",
+        text: 'Have a Nice Day',
         showConfirmButton: false,
-        timer:2000
+        timer:3000
         
       });
       this.router.navigate(['/customer']);

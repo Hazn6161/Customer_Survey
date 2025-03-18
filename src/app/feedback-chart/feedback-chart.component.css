@@ -1,0 +1,21 @@
+#chart {
+    margin: 20px;
+}
+
+.total-count{
+    /* 1 pixel black shadow to left, top, right and bottom */
+    font-size: 3.8rem;
+    font-weight: 600;
+    margin-bottom: 5rem;
+    text-align: center;
+    animation: fadeIn 0.5s ease 0.3s forwards;
+    background-color: #2BB9FA;
+    text-shadow: 4px 4px 6px #000000;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; color: rgb(255, 255, 255);
+}
+
+.apexcharts-xaxis text {
+    font-weight: bold !important;
+  }
+  
+  

@@ -3,10 +3,6 @@
     width:100px;
 }
 
-body {
-  font-family: "Open Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", Helvetica, Arial, sans-serif; 
-}
-
 h1 {
     /* 1 pixel black shadow to left, top, right and bottom */
     font-size: 3.8rem;

@@ -90,7 +90,13 @@ export class ApiService {
   }
 
   
+
+  //172.20.11.162:8001 CustomerSatiseSurvey
   savecustomer(customer) {
     return this.http.post<any>(this.apiUrl + "/CustomerSatiseSurvey", customer);
+  }
+
+  getbarchartdata(): any {
+    return this.http.get(this.apiUrl + "/CustomerSatiseSurvey/SurveyResult",  { responseType: 'json'});
   }
 }
