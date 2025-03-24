@@ -268,16 +268,39 @@
      -->
     <h2 style="text-align: center; ">
         <span>
-            <p class="font-weight-bold mb-5 mt-5">How was your experience with our support team ?</p>
+            <p class="font-weight-bold1">How Would You Rate Our Service ?</p>
         </span>
     </h2>
+    <!-- <div class="mx-auto mt-5 mb-5 dropdown">
+        <ng-select [items]="vehicleNos" class="mx-auto" bindLabel="name" placeholder="Please Type Your Vehicle No" bindValue="name" [(ngModel)]="vehicle" ></ng-select>
+    </div> -->
+
+     <div class="mb-3">
+        <input type="text" [(ngModel)]="searchText" (input)="toUpperCaseInput()" placeholder="Type vehicle number..." autocomplete="off"/>
+
+        <!-- Autocomplete Dropdown -->
+        <ul *ngIf="filteredData.length > 0" class="dropdown">
+            <li *ngFor="let item of filteredData" (click)="selectVehicle(item)">
+                {{ item.vehicleNo }}
+            </li>
+        </ul>
+
+        <!-- Show message if no matches -->
+        <div *ngIf="filteredData.length === 0 && searchText.length > 0">
+            <!-- No matching vehicles found.-->
+
+        </div>
+    </div>
+
+
+
     <div class="row mx-auto">
-        <button class="aqua-button-bad mx-auto mt-2"  (click)="saveCustomer(0)">
+        <button class="aqua-button-bad mx-auto mt-2" (click)="saveCustomer(0)">
             <div class="button-content">
                 <span><i class="bi bi-emoji-angry"></i></span>
             </div>
         </button>
-        <button class="aqua-button-poor mx-auto mt-2" (click)="saveCustomer(1)" >
+        <button class="aqua-button-poor mx-auto mt-2" (click)="saveCustomer(1)">
             <div class="button-content">
                 <span><i class="bi bi-emoji-frown"></i></span>
             </div>

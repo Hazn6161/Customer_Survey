@@ -99,4 +99,12 @@ export class ApiService {
   getbarchartdata(): any {
     return this.http.get(this.apiUrl + "/CustomerSatiseSurvey/SurveyResult",  { responseType: 'json'});
   }
+
+  getvehicleno(): any {
+    return this.http.get(this.apiUrl + "/CustomerSatiseSurvey/SurveyVehicle",{ responseType: 'json'});
+  } 
+
+  getVehicleData() {
+    return this.http.get<any[]>('http://172.20.11.162:8001/CustomerSatiseSurvey/SurveyVehicle');
+  }
 }

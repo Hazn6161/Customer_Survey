@@ -123,7 +123,7 @@ export class FeedbackChartComponent implements OnInit, OnDestroy {
         },
         xaxis: {
           categories: [
-            "Excellent", "Good", "Medium", "Poor", "Bad"
+            "Excellent", "Good", "Average", "Poor", "Bad"
           ],
           labels: {
             style: {

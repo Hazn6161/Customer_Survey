@@ -1,6 +1,6 @@
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, NgSelectOption, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgApexchartsModule } from 'ng-apexcharts';
 
@@ -13,6 +13,9 @@ import { NgxSpinnerModule } from 'ngx-spinner';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CustomerComponent } from './customer/customer.component';
 import { FeedbackChartComponent } from './feedback-chart/feedback-chart.component';
+import { NgSelectModule } from '@ng-select/ng-select';
+
+
 
 
 @NgModule({
@@ -31,7 +34,8 @@ import { FeedbackChartComponent } from './feedback-chart/feedback-chart.componen
     FormsModule,
     NgxSpinnerModule,
     BrowserAnimationsModule,
-    NgApexchartsModule
+    NgApexchartsModule,
+    NgSelectModule
 
   ],
   providers: [],

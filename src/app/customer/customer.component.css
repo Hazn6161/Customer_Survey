@@ -1,7 +1,61 @@
-.d-block {
-    height: 100px;
-    width:100px;
+input {
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 300px; /* Adjusted for better visibility */
+  max-width: 90%; /* Ensures responsiveness */
+  padding: 10px;
+  font-size: 25px; /* Increased for better readability */
+  border: 1px solid #ccc;
+  border-radius: 8px; /* More rounded for a modern look */
+  background: white;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.15);
+  z-index: 10;
 }
+
+.dropdown {
+  position: fixed;
+  top: calc(50% + 50px); /* Moves dropdown just below input */
+  left: 50%;
+  font-size: 25px;
+  transform: translateX(-50%);
+  width: 300px; /* Matches input width */
+  max-width: 90%; /* Ensures it doesn't overflow */
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background: white;
+  max-height: 250px; /* Increased height for more visible items */
+  overflow-y: auto;
+  list-style: none;
+  padding: px;
+  z-index: 10;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.15);
+}
+
+.dropdown li {
+  padding: 12px; /* More spacing for better UX */
+  font-size: 25px;
+  cursor: pointer;
+}
+
+.dropdown li:hover {
+  background-color: #f0f0f0;
+}
+
+
+
+.d-block {
+    height: 120px;
+    width:120px;
+}
+
+.font-weight-bold1{
+  margin-top: 50px;
+  margin-bottom: 60px;
+}
+
+
 
 h1 {
     /* 1 pixel black shadow to left, top, right and bottom */
@@ -17,9 +71,8 @@ h1 {
 }
 
 h2{
-  font-size: 3rem; 
+  font-size: 3.5rem; 
 }
-
 
 
 /* button bad */
@@ -724,5 +777,6 @@ h2{
   .aqua-button-excellent:hover {
     animation: none;
   }
+
 
 
