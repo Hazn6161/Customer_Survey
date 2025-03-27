@@ -6,11 +6,6 @@ import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { NgSelectConfig } from '@ng-select/ng-select';
 import { ChangeDetectorRef } from '@angular/core';
-import { RouterModule } from '@angular/router';
-import { CommonModule } from '@angular/common';           // ⬅️ Add this
-import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
-import { empty } from 'rxjs';
 
 @Component({
   selector: 'app-customer',
@@ -28,7 +23,6 @@ export class CustomerComponent implements OnInit {
   allVehicleData: any[] = [];
   isLoading = true;
   debounceTimer: any;
-  searchText2
 
   constructor(
     private fb: FormBuilder,
@@ -62,7 +56,7 @@ export class CustomerComponent implements OnInit {
   ngOnInit(): void {
     this.api.getVehicleData().subscribe(
       (data) => {
-        console.log('API Data:', data);  // 👈 Log it here
+        //console.log('API Data:', data);  // 👈 Log it here
         this.allVehicleData = data;
         this.isLoading = false;
       },
@@ -74,35 +68,37 @@ export class CustomerComponent implements OnInit {
   }
 
   toUpperCaseInput(): void {
-
-    if (this.searchText.trim() === '') {
-      this.filteredData = [];  // Clear dropdown if input is empty
+    this.searchText = this.searchText.trim().toUpperCase(); // Trim and convert to uppercase
+    
+    if (this.searchText === '') {
+      this.filteredData = []; // Clear dropdown if input is empty
+    } else {
+      this.onSearch(); // Trigger search after trimming and converting to uppercase
     }
-    // if (this.searchText) {
-    else {
-      this.searchText = this.searchText.toUpperCase();
-      this.onSearch(); // trigger search after uppercase conversion
-    }
-  }
-  selectVehicle(item: any): void {
-    this.searchText = item.vehicleNo; // fill input with selected vehicle
-    this.filteredData = []; // hide dropdown after selection
   }
 
   onSearch(): void {
     clearTimeout(this.debounceTimer);
-
+  
     this.debounceTimer = setTimeout(() => {
-      const search = this.searchText.toUpperCase();
-
+      const normalize = (str: string) => str.replace(/\s+/g, '').trim().toUpperCase(); // Remove ALL spaces
+  
+      const search = normalize(this.searchText); // Normalize user input
+  
       const results = this.allVehicleData.filter(vehicle =>
-        vehicle.vehicleNo?.toUpperCase().includes(search)
+        normalize(vehicle.vehicleNo).includes(search) // Normalize stored vehicle numbers before comparing
       );
-
+  
       console.log('Search Text:', search);
       console.log('Matching Results:', results);
-      this.filteredData = results.slice(0, 20);
+      
+      this.filteredData = results.slice(0, 20); // Limit results to 20
     }, 300);
+  }
+  
+  selectVehicle(item: any): void {
+    this.searchText = item.vehicleNo.trim(); // Ensure selected value is trimmed
+    this.filteredData = []; // Hide dropdown after selection
   }
 
 

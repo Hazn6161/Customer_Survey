@@ -1,41 +1,44 @@
 input {
   position: relative;
-  top: 50%;
   left: 50%;
+  margin-bottom: 20px;
   transform: translate(-50%, -50%);
-  width: 300px; /* Adjusted for better visibility */
+  width: 220px; /* Adjusted for better visibility */
   max-width: 90%; /* Ensures responsiveness */
-  padding: 10px;
-  font-size: 25px; /* Increased for better readability */
+  padding: 5px;
+  font-size: 20px; /* Increased for better readability */
   border: 1px solid #ccc;
   border-radius: 8px; /* More rounded for a modern look */
   background: white;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.15);
   z-index: 10;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; color: rgb(0, 0, 0);
 }
 
 .dropdown {
-  position: fixed;
-  top: calc(50% + 50px); /* Moves dropdown just below input */
+  position: absolute;
+  margin-top: -40px;
   left: 50%;
-  font-size: 25px;
+  font-size: 22px;
   transform: translateX(-50%);
-  width: 300px; /* Matches input width */
+  width: 220px; /* Matches input width */
   max-width: 90%; /* Ensures it doesn't overflow */
   border: 1px solid #ccc;
   border-radius: 8px;
   background: white;
-  max-height: 250px; /* Increased height for more visible items */
+  max-height: 200px; /* Increased height for more visible items */
   overflow-y: auto;
-  list-style: none;
-  padding: px;
   z-index: 10;
+  padding: 0;
+  list-style: none; /* Removes bullet points */
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.15);
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; color: rgb(0, 0, 0);
 }
 
+
 .dropdown li {
-  padding: 12px; /* More spacing for better UX */
-  font-size: 25px;
+  padding: 6px; /* More spacing for better UX */
+  font-size: 20px;
   cursor: pointer;
 }
 
@@ -46,13 +49,25 @@ input {
 
 
 .d-block {
-    height: 120px;
-    width:120px;
+  height: 100px;
+  width: 100px;
+  margin-bottom: 2.5rem;
+  position: relative;
 }
 
 .font-weight-bold1{
-  margin-top: 50px;
-  margin-bottom: 60px;
+  position: relative;
+}
+
+
+.sdu{
+  position: relative;
+  top: 30px;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; color: rgb(0, 0, 0);
+}
+
+.col-sm-1{
+  position: relative;
 }
 
 
@@ -60,18 +75,21 @@ input {
 h1 {
     /* 1 pixel black shadow to left, top, right and bottom */
     font-size: 3.8rem;
-    font-weight: 600;
+    font-weight: 500;
     margin-top: 0.5rem;
     text-align: center;
     animation: fadeIn 0.5s ease 0.3s forwards;
     color: #3498db;
     text-shadow: 4px 4px 6px #000000;
-
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; color: rgb(255, 255, 255);
 }
 
 h2{
-  font-size: 3.5rem; 
+  font-size: 3.5rem;
+  margin-bottom: 60px;
+  margin-top: 10px;
+  text-shadow: 4px 4px 6px #ffffff;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; color: rgb(0, 0, 0);
 }
 
 
@@ -657,14 +675,13 @@ h2{
                  0 -1px 1px rgba(255, 255, 255, 0.3);
   }
 
-
-
   .Bad {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     text-align: center;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; color: rgb(0, 0, 0);
   }
 
   .Poor {
@@ -673,6 +690,7 @@ h2{
     align-items: center;
     justify-content: center;
     text-align: center;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; color: rgb(0, 0, 0);
   }
   .Average {
     display: flex;
@@ -680,6 +698,7 @@ h2{
     align-items: center;
     justify-content: center;
     text-align: center;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; color: rgb(0, 0, 0);
   }
   .Good {
     display: flex;
@@ -687,6 +706,7 @@ h2{
     align-items: center;
     justify-content: center;
     text-align: center;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; color: rgb(0, 0, 0);
   }
   .Excellent {
     display: flex;
@@ -694,6 +714,7 @@ h2{
     align-items: center;
     justify-content: center;
     text-align: center;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; color: rgb(0, 0, 0);
   }
 
 

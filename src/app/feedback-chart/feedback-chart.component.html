@@ -1,21 +1,51 @@
-<div id="chart">
-  <!-- Display the total result count here -->
-  <div *ngIf="totalResult >= 0" class="total-count d-block rounded">
-    Total Customer Feedback : {{ totalResult }}
+<!doctype html>
+<html>
+
+<head>
+    <meta name="viewpoint" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <!-- <meta name="viewport" content="width=device-width,initial-scale = 1"> -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"> </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"> </script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"> </script>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.js"> </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"> </script>
+    <script src="https://cdn.datatables.net/2.1.8/js/dataTables.js"> </script>
+    <script src="https://cdn.datatables.net/2.1.8/js/dataTables.bootstrap5.js"> </script>
+
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
+    <link href="https://cdn.datatables.net/2.1.8/css/dataTables.bootstrap5.css">
+
+</head>
+
+<body>
+
+  <div id="chart">
+    <!-- Display the total result count here -->
+    <div *ngIf="totalResult >= 0" class="total-count d-block rounded">
+      Total Customer Feedback : {{ totalResult }}
+    </div>
+    <apx-chart
+      [series]="chartOptions.series!"
+      [chart]="chartOptions.chart!"
+      [dataLabels]="chartOptions.dataLabels!"
+      [plotOptions]="chartOptions.plotOptions!"
+      [yaxis]="chartOptions.yaxis!"
+      [xaxis]="chartOptions.xaxis!"
+      [legend]="chartOptions.legend!"
+      [colors]="chartOptions.colors!"
+      [grid]="chartOptions.grid!"
+    ></apx-chart>
   </div>
-  <apx-chart
-    [series]="chartOptions.series!"
-    [chart]="chartOptions.chart!"
-    [dataLabels]="chartOptions.dataLabels!"
-    [plotOptions]="chartOptions.plotOptions!"
-    [yaxis]="chartOptions.yaxis!"
-    [xaxis]="chartOptions.xaxis!"
-    [legend]="chartOptions.legend!"
-    [colors]="chartOptions.colors!"
-    [grid]="chartOptions.grid!"
-  ></apx-chart>
-</div>
-<div>
-  <p class="text-center text-black mt-3" style="text-align: center; font-size:14px;">© 2025 Copyright Co-operative Insurance All
-      Rights Reserved. made by Coop Software Development Unit</p>
-</div>
+  <div>
+    <p class="text-center text-black mt-3" style="text-align: center; font-size:14px;">© 2025 Copyright Co-operative Insurance All
+        Rights Reserved. made by Coop Software Development Unit</p>
+  </div>
+  
+</body>
+</html>
+
+
+

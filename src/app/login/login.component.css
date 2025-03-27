@@ -1,36 +1,22 @@
-.divider:after,
-.divider:before {
-content: "";
-flex: 1;
-height: 1px;
-background: #eee;
-}
-.h-custom {
-height: calc(100% - 73px);
-}
-@media (max-width: 450px) {
-.h-custom {
-height: 100%;
-}
-}
 
 .d-block {
-  height: 140px;
-  width:140px;
-  margin-bottom: 2.5rem;
+  height: 100px;
+  width:100px;
 }
 
-
-
+ 
 h1 {
   /* 1 pixel black shadow to left, top, right and bottom */
   font-size: 3rem;
   font-weight: 600;
-  margin-top: 0.5rem;
-  text-align: center;
+  margin-top: 2rem;
   animation: fadeIn 0.5s ease 0.3s forwards;
   color: #3498db;
   text-shadow: 4px 4px 6px #000000;
-
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; color: rgb(255, 255, 255);
+}
+
+
+section{
+  position: relative;
 }
