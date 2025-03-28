@@ -13,7 +13,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 })
 export class LoginComponent implements OnInit {
   public loginform!: UntypedFormGroup;
-feedbackForm: any;
+
 
   constructor(private formBuilder: UntypedFormBuilder, 
     private http: HttpClient, 
@@ -32,36 +32,18 @@ feedbackForm: any;
   }
 
   login(): void {
+    console.log('wada')
     this.spinner.show();
 
     let username = this.loginform.value.username;
     let password = this.loginform.value.password;
 
-    this.spinner.hide();
 
     this.apiService.login(username, password).subscribe(async (data: any) => {
+      this.spinner.hide();
 
-      //const { value: formValues } =  await Swal.fire({
-      // title: "Enter Your Branch & Reagion",
-      // allowOutsideClick: false,
-      // html: `
-      // <label>Branch</label>
-      // <input id="swal-input1" class="swal2-input">
-      // <label>Region</label>
-      // <input id="swal-input2" class="swal2-input">
-      // `,
-      // focusConfirm: false,
-      // preConfirm: () => {
-      //   return [
-      //     // document.getElementById("swal-input1").value,
-      //     // document.getElementById("swal-input2").value
-      //   ];
-      // }
-      //});
-      // if (formValues) {
-      //   Swal.fire(JSON.stringify(formValues));
-      // }
-      //this.loginform.reset();
+      
+
       Swal.fire({
         icon: 'success',
         title: 'You are successfully logged in',
@@ -73,6 +55,7 @@ feedbackForm: any;
       localStorage.setItem('user', JSON.stringify(data));
     },
       error => {
+        this.spinner.hide();
         Swal.fire({
           icon: 'error',
           //title: 'කරුණාකර මුරපදය සඳහා පරිශීලක නාමය භාවිතා කරන්න. கடவுச்சொல்லுக்கு பயனர் பெயரைப் பயன்படுத்தவும்.',
