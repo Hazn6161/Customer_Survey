@@ -1,3 +1,11 @@
+.imgs {
+  height: 120px;
+  width: 120px;
+}
+
+section{
+  position: relative;
+}
 
 .d-block {
   height: 100px;
@@ -16,7 +24,13 @@ h1 {
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; color: rgb(255, 255, 255);
 }
 
-
-section{
-  position: relative;
-}
+/* .card {
+  background: linear-gradient(90deg,
+      rgb(49, 112, 41) 0%,
+      rgb(78, 205, 74) 100%);
+  border-color: black;
+  border-width: 0.1cm;
+  max-width: 100%;
+  width: 100%;
+  margin: 2em auto;
+} */
