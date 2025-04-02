@@ -69,7 +69,7 @@ export class CustomerComponent implements OnInit {
 
   toUpperCaseInput(): void {
     this.searchText = this.searchText.trim().toUpperCase(); // Trim and convert to uppercase
-    
+
     if (this.searchText === '') {
       this.filteredData = []; // Clear dropdown if input is empty
     } else {
@@ -79,23 +79,23 @@ export class CustomerComponent implements OnInit {
 
   onSearch(): void {
     clearTimeout(this.debounceTimer);
-  
+
     this.debounceTimer = setTimeout(() => {
       const normalize = (str: string) => str.replace(/\s+/g, '').trim().toUpperCase(); // Remove ALL spaces
-  
+
       const search = normalize(this.searchText); // Normalize user input
-  
+
       const results = this.allVehicleData.filter(vehicle =>
         normalize(vehicle.vehicleNo).includes(search) // Normalize stored vehicle numbers before comparing
       );
-  
+
       console.log('Search Text:', search);
       console.log('Matching Results:', results);
-      
+
       this.filteredData = results.slice(0, 20); // Limit results to 20
     }, 300);
   }
-  
+
   selectVehicle(item: any): void {
     this.searchText = item.vehicleNo.trim(); // Ensure selected value is trimmed
     this.filteredData = []; // Hide dropdown after selection
@@ -129,17 +129,17 @@ export class CustomerComponent implements OnInit {
   saveCustomer(value: number) {
     // Check if searchText is empty
     if (this.searchText.trim() === "") {
-        console.log("searchText is empty");
-        Swal.fire({
-            icon: 'error',
-            title: 'Need Your Vehicle No',
-            text: 'Please Fill the Vehicle No!',
-            // title: 'ඔබගේ වාහන අංකය අවශ්‍යයි',
-            // text: 'කරුණාකර වාහන අංකය පුරවන්න !',
-            showConfirmButton: false,
-            timer: 3000
-        });
-        return; // Stop execution if searchText is empty
+      console.log("searchText is empty");
+      Swal.fire({
+        icon: 'error',
+        title: 'Need Your Vehicle No',
+        text: 'Please Fill the Vehicle No!',
+        // title: 'ඔබගේ වාහන අංකය අවශ්‍යයි',
+        // text: 'කරුණාකර වාහන අංකය පුරවන්න !',
+        showConfirmButton: false,
+        timer: 3000
+      });
+      return; // Stop execution if searchText is empty
     }
 
     console.log(this.searchText);
@@ -149,49 +149,49 @@ export class CustomerComponent implements OnInit {
     let user = userData ? JSON.parse(userData) : {};
 
     let customer = {
-        "claimNo": null, // Use null instead of string "null"
-        "createdDate": "",
-        "id": "",
-        "surveyId": value,
-        "surveyLocation": user.slcBrnDesc || "", // Avoid undefined errors
-        "surveyType": "FRONT_COUNTER",
-        "surveyUsername": user.username || "",
-        "vehicleNo": this.searchText
+      "claimNo": null, // Use null instead of string "null"
+      "createdDate": "",
+      "id": "",
+      "surveyId": value,
+      "surveyLocation": user.slcBrnDesc || "", // Avoid undefined errors
+      "surveyType": "FRONT_COUNTER",
+      "surveyUsername": user.username || "",
+      "vehicleNo": this.searchText
     };
 
     // Call API to save customer
     this.api.savecustomer(customer).subscribe(
-        (data: any) => {
-            Swal.fire({
-                title: "Thank You for your feedback",
-                imageUrl: "https://i.ibb.co/JjHxXsJH/Thank-You-Emoji.png",
-                imageWidth: 400,
-                imageHeight: 200,
-                imageAlt: "Custom image",
-                icon: "success",
-                text: 'Have a Nice Day',
-                showConfirmButton: false,
-                timer: 3000
-            });
+      (data: any) => {
+        Swal.fire({
+          title: "Thank You for your feedback",
+          imageUrl: "https://i.ibb.co/JjHxXsJH/Thank-You-Emoji.png",
+          imageWidth: 400,
+          imageHeight: 200,
+          imageAlt: "Custom image",
+          icon: "success",
+          text: 'Have a Nice Day',
+          showConfirmButton: false,
+          timer: 3000
+        });
 
-            // Clear input and navigate
-            this.searchText = "";
-            this.router.navigate(['/customer']);
+        // Clear input and navigate
+        this.searchText = "";
+        this.router.navigate(['/customer']);
 
-            // Close modal if applicable
-            let ref = document.getElementById('cancel');
-            ref?.click();
-        },
-        (err) => {
-            Swal.fire({
-                icon: 'error',
-                title: 'Fill All Data',
-                text: 'Something went wrong!',
-                footer: 'Please Contact Us - COOP-SDU'
-            });
-        }
+        // Close modal if applicable
+        let ref = document.getElementById('cancel');
+        ref?.click();
+      },
+      (err) => {
+        Swal.fire({
+          icon: 'error',
+          title: 'Fill All Data',
+          text: 'Something went wrong!',
+          footer: 'Please Contact Us - COOP-SDU'
+        });
+      }
     );
-}
+  }
 
 
 }
